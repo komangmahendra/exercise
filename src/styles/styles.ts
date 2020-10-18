@@ -42,14 +42,5 @@ border-radius: 4px;
 padding: 20px;
 `;
 
-export const InputWithLabelStyle = styled.div`
-.label-title {
-  font-size: 14px;
-  line-height: 24px;
-}
 
-.label-title__tnc {
-  color: #eb5757;
-}
-`;
 

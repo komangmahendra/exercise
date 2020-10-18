@@ -3,18 +3,30 @@ import styled from "styled-components/macro";
 
 type InputProps = React.ButtonHTMLAttributes<HTMLInputElement> & {
   label?: string;
+  textAlign?: "left" | "right" | "center";
 };
 
-const InputText = ({ placeholder, label }: InputProps) => {
+const InputText = ({
+  placeholder,
+  label,
+  value,
+  textAlign,
+  onChange,
+}: InputProps) => {
   return (
-    <Container>
+    <Container textAlign={textAlign}>
       {label ? <span className="input-label">{label}</span> : null}
-      <input placeholder={placeholder} className="custom-input-text" />
+      <input
+        placeholder={placeholder}
+        className="custom-input-text"
+        value={value}
+        onChange={onChange}
+      />
     </Container>
   );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ textAlign?: "left" | "right" | "center" }>`
   display: flex;
   width: 100%;
   padding: 6px;
@@ -22,6 +34,10 @@ const Container = styled.div`
   box-sizing: border-box;
   border-radius: 5px;
   background-color: #fff;
+
+  :hover {
+    border-color: #3a4f62;
+  }
 
   .input-label {
     font-size: 14px;
@@ -31,13 +47,29 @@ const Container = styled.div`
 
   input {
     width: 100%;
-    text-align: right;
+    text-align: ${({ textAlign }) => textAlign || "right"};
     outline: none;
     border: none;
 
     font-size: 14px;
     line-height: 24px;
     color: #3a4f62;
+
+    ::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: #8f9fa8;
+      opacity: 1; /* Firefox */
+    }
+
+    :-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: #8f9fa8;
+    }
+
+    ::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: #8f9fa8;
+    }
   }
 `;
 

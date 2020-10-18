@@ -44,7 +44,16 @@ const PurchaseInvoice = () => {
 
   const handleDeleteItem = (index: number) => {};
 
-  return <PurchaseInvoiceContainer />;
+  return (
+    <PurchaseInvoiceContainer
+      supplierName={supplierName}
+      invoiceNo={invoiceNo}
+      isIncludePPN={isIncludePPN}
+      handleChangeIsIncludePPN={setIsIncludePPN}
+      handleChangeInvoiceNo={setInvoiceNo}
+      handleChangeSupplierName={setSupplierName}
+    />
+  );
 };
 
 export default PurchaseInvoice;

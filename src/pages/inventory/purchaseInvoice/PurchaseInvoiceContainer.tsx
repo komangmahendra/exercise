@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components/macro";
 
+// type
+import { PurchaseContainerProps } from "./type";
+
 //components
 import PageHeader from "../../../components/PageHeader";
 import Layout from "../../../components/Layout";
@@ -10,9 +13,16 @@ import PurchaseInvoicePayment from "./PurchaseInvoicePayment";
 import PageWrapper from "../../../components/PageWrapper";
 import Button from "../../../components/Button";
 
-// styles
+const PurchaseInvoiceContainer = (props: PurchaseContainerProps) => {
+  const {
+    supplierName,
+    invoiceNo,
+    isIncludePPN,
+    handleChangeInvoiceNo,
+    handleChangeIsIncludePPN,
+    handleChangeSupplierName,
+  } = props;
 
-const PurchaseInvoiceContainer = () => {
   return (
     <Layout>
       <PageWrapper>
@@ -29,7 +39,14 @@ const PurchaseInvoiceContainer = () => {
         <Container>
           <div className="container-row">
             <div className="container-row__column">
-              <PurchaseInvoiceSupplier />
+              <PurchaseInvoiceSupplier
+                supplierName={supplierName}
+                invoiceNo={invoiceNo}
+                isIncludePPN={isIncludePPN}
+                handleChangeIsIncludePPN={handleChangeIsIncludePPN}
+                handleChangeInvoiceNo={handleChangeInvoiceNo}
+                handleChangeSupplierName={handleChangeSupplierName}
+              />
             </div>
             <div className="container-row__column">
               <PurchaseInvoicePayment />

@@ -2,32 +2,30 @@ import React from "react";
 import styled from "styled-components/macro";
 
 // component
-import InputText from "../../../components/InputText";
+import Select from "../../../components/Select";
 import Calendar from "../../../components/SingleDatePicker";
-import { InputWithLabelStyle, BasicContainer } from "../../../styles/styles";
+import InputWithLabel from "../../../components/InputWithLabel";
+
+// style
+import { BasicContainer } from "../../../styles/styles";
 
 const PurchaseInvoicePayment = () => {
   return (
     <Container>
-      <InputWithLabel>
-        <span className="label-title">
-          Suplier<span className="label-title__tnc">*</span>
-        </span>
-        <InputText />
+      <InputWithLabel label={"Pembayaran"}>
+        <div className="payment-type__select">
+          <Select />
+        </div>
       </InputWithLabel>
 
       <div className="supplier__row">
         <div className="supplier__column">
-          <InputWithLabel>
-            <span className="label-title">
-              Nomor Faktur<span className="label-title__tnc">*</span>
-            </span>
+          <InputWithLabel label="Tanggal Pembelian">
             <Calendar />
           </InputWithLabel>
         </div>
         <div className="supplier__column">
-          <InputWithLabel>
-            <span className="label-title">Harga Termasuk PPN</span>
+          <InputWithLabel label="Jatuh tempo">
             <Calendar />
           </InputWithLabel>
         </div>
@@ -53,8 +51,10 @@ const Container = styled(BasicContainer)`
   .column-input__select {
     width: 100px;
   }
-`;
 
-const InputWithLabel = InputWithLabelStyle;
+  .payment-type__select {
+    width: 100px;
+  }
+`;
 
 export default PurchaseInvoicePayment;

@@ -5,23 +5,32 @@ import styled from "styled-components/macro";
 // assets
 import ChevronIcon from "../assets/icons/chevron.svg";
 
-const SelectComponent = () => {
+export type SelectComponentProps = {
+  value?: any;
+  options?: { label: string; value: any }[];
+};
+
+const SelectComponent = (props: SelectComponentProps) => {
+  const { options, value } = props;
+
   const customStyles = {
     control: (base: any, state: any) => ({
       ...base,
-      "&:hover": { borderColor: "gray" },
+      "&:hover": { borderColor: "#3A4F62" },
       border: "1px solid lightgray",
-      boxShadow: "none !important",
+      boxShadow: "none",
       outline: "none",
       height: "40px",
-      // You can also use state.isFocused to conditionally style based on the focus state
+      fontSize: "14px",
+      lineHeight: "24px",
+      color: "#3A4F62",
     }),
   };
 
   return (
     <Container>
       <Select
-        options={[{ value: "hehe", label: "hehe" }]}
+        options={options || []}
         components={{
           DropdownIndicator: () => (
             <ArrowContainer>
@@ -30,7 +39,7 @@ const SelectComponent = () => {
           ),
           IndicatorSeparator: () => null,
         }}
-        value={{ value: "hehe", label: "hehe" }}
+        value={value}
         styles={customStyles}
       />
     </Container>
