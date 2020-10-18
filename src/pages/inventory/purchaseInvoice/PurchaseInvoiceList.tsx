@@ -55,7 +55,7 @@ const StockInvoice = () => {
           <InputText />
         </div>
         <div className={`stock-list-column__unit column`}>
-          <Select />
+          {/* <Select /> */}
         </div>
         <div className={`stock-list-column__discount column`}>
           <SelectWithInput />

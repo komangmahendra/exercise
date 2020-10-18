@@ -10,9 +10,15 @@ import id from "date-fns/locale/id";
 import CalendarIcon from "../assets/icons/calendar.svg";
 import ChevronIcon from "../assets/icons/chevron.svg";
 
-const SingleDatePickerComponent = () => {
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+export type CalendarProps = {
+  selectedDate: Date | null;
+  onChange: (value: Date | null) => void;
+};
 
+const SingleDatePickerComponent = ({
+  selectedDate,
+  onChange,
+}: CalendarProps) => {
   const CustomInput = ({ value, onClick }: any) => (
     <CalendarPickerContainer onClick={onClick}>
       <span>{value}</span>
@@ -50,7 +56,7 @@ const SingleDatePickerComponent = () => {
         selected={selectedDate}
         onChange={(date) => {
           if (!Array.isArray(date)) {
-            setSelectedDate(date);
+            onChange(date);
           }
           return null;
         }}
@@ -85,6 +91,18 @@ const Container = styled.div`
     }
   }
 
+  .react-datepicker__input-container {
+    span {
+      color: #3a4f62 !important;
+    }
+
+    outline: none;
+  }
+
+  .react-datepicker__triangle {
+    border-bottom-color: #fff;
+  }
+
   .react-datepicker__header {
     background-color: #fff;
     border-bottom: none;
@@ -93,6 +111,7 @@ const Container = styled.div`
       border: none;
       background-color: #fff;
       outline: none;
+      color: #3a4f62;
       cursor: pointer;
 
       > .button-calendar__prev {
@@ -134,6 +153,7 @@ const CalendarPickerContainer = styled.button`
   align-items: center;
   background-color: #fff;
   width: 100%;
+  outline: none;
 
   min-width: 220px;
   border: 1px solid rgba(58, 79, 98, 0.2);
@@ -144,6 +164,10 @@ const CalendarPickerContainer = styled.button`
   font-size: 14px;
   line-height: 24px;
   font-weight: 400;
+
+  :hover {
+    border: 1px solid #3a4f62;
+  }
 `;
 
 export default SingleDatePickerComponent;

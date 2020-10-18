@@ -1,25 +1,10 @@
 import React, { useState } from "react";
 
+// type
+import { Discount, PaymentType, PurchaseInvoiceItem } from "./type";
+
 // component
 import PurchaseInvoiceContainer from "./PurchaseInvoiceContainer";
-
-export type Unit = "pcs";
-
-export type PaymentType = "cash" | "credit";
-
-export type DiscountType = "percentage";
-
-export type Discount = { type: DiscountType; value: number };
-
-export type PurchaseInvoiceItem = {
-  goods: string;
-  batch: string;
-  ED: { month: number; year: number };
-  price: number;
-  qty: number;
-  unit: Unit;
-  discount: Discount;
-};
 
 const PurchaseInvoice = () => {
   const [listPurchaseInvoice, setListPurchaseInvoice] = useState<
@@ -39,8 +24,8 @@ const PurchaseInvoice = () => {
 
   // PAYMENT
   const [paymentType, setPaymenetType] = useState<PaymentType>("credit");
-  const [purchangeDate, setPurchaseDate] = useState("");
-  const [dueDate, setDueDate] = useState("");
+  const [purchaseDate, setPurchaseDate] = useState<Date | null>(new Date());
+  const [dueDate, setDueDate] = useState<Date | null>(new Date());
 
   const handleDeleteItem = (index: number) => {};
 
@@ -52,6 +37,13 @@ const PurchaseInvoice = () => {
       handleChangeIsIncludePPN={setIsIncludePPN}
       handleChangeInvoiceNo={setInvoiceNo}
       handleChangeSupplierName={setSupplierName}
+      //  payment
+      paymentType={paymentType}
+      purchaseDate={purchaseDate}
+      dueDate={dueDate}
+      handleChangePaymentType={setPaymenetType}
+      handleChangePurchaseDate={setPurchaseDate}
+      handleChangeDueDate={setDueDate}
     />
   );
 };

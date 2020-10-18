@@ -8,10 +8,11 @@ import ChevronIcon from "../assets/icons/chevron.svg";
 export type SelectComponentProps = {
   value?: any;
   options?: { label: string; value: any }[];
+  onChange: (value: { label: string; value: any }) => void;
 };
 
 const SelectComponent = (props: SelectComponentProps) => {
-  const { options, value } = props;
+  const { options, value, onChange } = props;
 
   const customStyles = {
     control: (base: any, state: any) => ({
@@ -39,6 +40,7 @@ const SelectComponent = (props: SelectComponentProps) => {
           ),
           IndicatorSeparator: () => null,
         }}
+        onChange={(value) => onChange(value!)}
         value={value}
         styles={customStyles}
       />

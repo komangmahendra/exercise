@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components/macro";
+
+// type
+import { PurchaseInvoicePaymentProps } from "./type";
 
 // component
 import Select from "../../../components/Select";
@@ -9,24 +12,49 @@ import InputWithLabel from "../../../components/InputWithLabel";
 // style
 import { BasicContainer } from "../../../styles/styles";
 
-const PurchaseInvoicePayment = () => {
+const PurchaseInvoicePayment = (props: PurchaseInvoicePaymentProps) => {
+  const {
+    paymentType,
+    dueDate,
+    purchaseDate,
+    handleChangeDueDate,
+    handleChangePaymentType,
+    handleChangePurchaseDate,
+  } = props;
+
+  const paymentOptions = [
+    { label: "Kredit", value: "credit" },
+    { label: "Kas", value: "cash" },
+  ];
+
+  const getPaymentTypeValue = useMemo(() => {
+    return paymentOptions.find((el) => el.value === paymentType);
+  }, [paymentType, paymentOptions]);
+
   return (
     <Container>
       <InputWithLabel label={"Pembayaran"}>
         <div className="payment-type__select">
-          <Select />
+          <Select
+            value={getPaymentTypeValue}
+            options={paymentOptions}
+            onChange={(option) => handleChangePaymentType(option.value)}
+          />
         </div>
       </InputWithLabel>
 
       <div className="supplier__row">
         <div className="supplier__column">
           <InputWithLabel label="Tanggal Pembelian">
-            <Calendar />
+            <Calendar
+              onChange={handleChangePurchaseDate}
+              selectedDate={purchaseDate}
+            />
           </InputWithLabel>
         </div>
         <div className="supplier__column">
           <InputWithLabel label="Jatuh tempo">
-            <Calendar />
+            <Calendar onChange={handleChangeDueDate} selectedDate={dueDate} />
           </InputWithLabel>
         </div>
       </div>

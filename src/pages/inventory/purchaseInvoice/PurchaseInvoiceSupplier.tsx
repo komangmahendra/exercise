@@ -59,6 +59,7 @@ const PurchaseInvoiceSupplier = (props: PurchaseInvoiceSupplierProps) => {
               <Select
                 options={includePPNOotions}
                 value={getInclludePPNOptionValue}
+                onChange={(option) => handleChangeIsIncludePPN(option.value)}
               />
             </div>
           </InputWithLabel>

@@ -21,6 +21,14 @@ const PurchaseInvoiceContainer = (props: PurchaseContainerProps) => {
     handleChangeInvoiceNo,
     handleChangeIsIncludePPN,
     handleChangeSupplierName,
+
+    // payment
+    paymentType,
+    dueDate,
+    purchaseDate,
+    handleChangeDueDate,
+    handleChangePaymentType,
+    handleChangePurchaseDate,
   } = props;
 
   return (
@@ -49,7 +57,14 @@ const PurchaseInvoiceContainer = (props: PurchaseContainerProps) => {
               />
             </div>
             <div className="container-row__column">
-              <PurchaseInvoicePayment />
+              <PurchaseInvoicePayment
+                paymentType={paymentType}
+                dueDate={dueDate}
+                purchaseDate={purchaseDate}
+                handleChangeDueDate={handleChangeDueDate}
+                handleChangePaymentType={handleChangePaymentType}
+                handleChangePurchaseDate={handleChangePurchaseDate}
+              />
             </div>
           </div>
           <div className="container-row">
