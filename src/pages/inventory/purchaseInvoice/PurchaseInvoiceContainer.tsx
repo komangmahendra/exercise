@@ -29,6 +29,14 @@ const PurchaseInvoiceContainer = (props: PurchaseContainerProps) => {
     handleChangeDueDate,
     handleChangePaymentType,
     handleChangePurchaseDate,
+
+    // list
+    purchaseInvoiceItems,
+    stampPrice,
+    purchaseDiscount,
+    setListPurchaseInvoice,
+    setStampPrice,
+    setPurchaseDiscount,
   } = props;
 
   return (
@@ -68,7 +76,15 @@ const PurchaseInvoiceContainer = (props: PurchaseContainerProps) => {
             </div>
           </div>
           <div className="container-row">
-            <PurchaseInvoiceList />
+            <PurchaseInvoiceList
+              purchaseInvoiceItems={purchaseInvoiceItems}
+              stampPrice={stampPrice}
+              purchaseDiscount={purchaseDiscount}
+              setListPurchaseInvoice={setListPurchaseInvoice}
+              setStampPrice={setStampPrice}
+              setPurchaseDiscount={setPurchaseDiscount}
+              isIncludePPN={isIncludePPN}
+            />
           </div>
         </Container>
       </PageWrapper>

@@ -13,14 +13,16 @@ import ChevronIcon from "../assets/icons/chevron.svg";
 export type CalendarProps = {
   selectedDate: Date | null;
   onChange: (value: Date | null) => void;
+  disabled?: boolean;
 };
 
 const SingleDatePickerComponent = ({
   selectedDate,
   onChange,
+  disabled,
 }: CalendarProps) => {
   const CustomInput = ({ value, onClick }: any) => (
-    <CalendarPickerContainer onClick={onClick}>
+    <CalendarPickerContainer onClick={onClick} disabled={disabled}>
       <span>{value}</span>
       <img src={CalendarIcon} alt="calendar" />
     </CalendarPickerContainer>
@@ -64,6 +66,7 @@ const SingleDatePickerComponent = ({
         renderCustomHeader={renderCustomHeader}
         formatWeekDay={(weekName) => weekName.substring(0, 1)}
         locale={id}
+        disabled={disabled}
       />
     </Container>
   );
@@ -147,16 +150,18 @@ const Container = styled.div`
   }
 `;
 
-const CalendarPickerContainer = styled.button`
+const CalendarPickerContainer = styled.button<{ disabled?: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fff;
+  background-color: ${({ disabled }) =>
+    disabled ? "rgba(58, 79, 98, 0.2)" : "#fff"};
+
   width: 100%;
   outline: none;
 
   min-width: 220px;
-  border: 1px solid rgba(58, 79, 98, 0.2);
+  border: 2px solid rgba(58, 79, 98, 0.2);
   box-sizing: border-box;
   border-radius: 5px;
   padding: 8px;
@@ -166,7 +171,7 @@ const CalendarPickerContainer = styled.button`
   font-weight: 400;
 
   :hover {
-    border: 1px solid #3a4f62;
+    border: 2px solid #13c2cd;
   }
 `;
 

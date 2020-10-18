@@ -17,8 +17,8 @@ const SelectComponent = (props: SelectComponentProps) => {
   const customStyles = {
     control: (base: any, state: any) => ({
       ...base,
-      "&:hover": { borderColor: "#3A4F62" },
-      border: "1px solid lightgray",
+      "&:hover": { borderColor: "#13C2CD", borderWidth: "2px" },
+      border: "2px solid rgba(58, 79, 98, 0.2)",
       boxShadow: "none",
       outline: "none",
       height: "40px",
@@ -26,6 +26,13 @@ const SelectComponent = (props: SelectComponentProps) => {
       lineHeight: "24px",
       color: "#3A4F62",
     }),
+    option: (styles: any, { isSelected }: any) => {
+      return {
+        ...styles,
+        "&:hover": { backgroundColor: "#E8F7F7", color: "#3A4F62" },
+        backgroundColor: isSelected ? "#13C2CD" : "#fff",
+      };
+    },
   };
 
   return (

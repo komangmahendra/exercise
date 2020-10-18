@@ -49,12 +49,17 @@ const PurchaseInvoicePayment = (props: PurchaseInvoicePaymentProps) => {
             <Calendar
               onChange={handleChangePurchaseDate}
               selectedDate={purchaseDate}
+              disabled={paymentType === "cash"}
             />
           </InputWithLabel>
         </div>
         <div className="supplier__column">
           <InputWithLabel label="Jatuh tempo">
-            <Calendar onChange={handleChangeDueDate} selectedDate={dueDate} />
+            <Calendar
+              onChange={handleChangeDueDate}
+              selectedDate={dueDate}
+              disabled={paymentType === "cash"}
+            />
           </InputWithLabel>
         </div>
       </div>

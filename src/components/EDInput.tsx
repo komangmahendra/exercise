@@ -1,19 +1,62 @@
 import React from "react";
 import styled from "styled-components/macro";
 
-const EDInput = () => {
+export type EDInputProps = {
+  monthValue?: number;
+  onChangeMonth?: (value: number) => void;
+  yearValue?: number;
+  onChangeYear?: (value: number) => void;
+};
+
+const EDInput = (props: EDInputProps) => {
+  const { monthValue, onChangeMonth, onChangeYear, yearValue } = props;
+
+  const handleChangeMonth = (e: any) => {
+    const value = e.target.value;
+    if (isNaN(value)) {
+      return;
+    }
+
+    if (value < 0 || value > 12) {
+      return;
+    }
+
+    onChangeMonth!(value);
+  };
+
+  const handleChangeYear = (e: any) => {
+    const value = e.target.value;
+    if (isNaN(value)) {
+      return;
+    }
+
+    if (value < 0 || value > 9999) {
+      return;
+    }
+
+    onChangeYear!(value);
+  };
+
   return (
     <Container>
-      <input placeholder="MM"></input>
+      <input
+        placeholder="MM"
+        onChange={handleChangeMonth}
+        value={monthValue}
+      ></input>
       <div className="divider" />
-      <input placeholder="YY"></input>
+      <input
+        placeholder="YY"
+        onChange={handleChangeYear}
+        value={yearValue}
+      ></input>
     </Container>
   );
 };
 
 const Container = styled.div`
   display: flex;
-  border: 1px solid rgba(58, 79, 98, 0.2);
+  border: 2px solid rgba(58, 79, 98, 0.2);
   height: 38px;
   border-radius: 6px;
 

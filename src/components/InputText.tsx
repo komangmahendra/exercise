@@ -30,13 +30,14 @@ const Container = styled.div<{ textAlign?: "left" | "right" | "center" }>`
   display: flex;
   width: 100%;
   padding: 6px;
-  border: 1px solid rgba(58, 79, 98, 0.2);
+  border: 2px solid rgba(58, 79, 98, 0.2);
   box-sizing: border-box;
   border-radius: 5px;
   background-color: #fff;
 
   :hover {
-    border-color: #3a4f62;
+    border-color: #13c2cd;
+    border-width: 2px;
   }
 
   .input-label {

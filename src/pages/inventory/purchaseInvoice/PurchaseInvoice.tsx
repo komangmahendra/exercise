@@ -9,7 +9,17 @@ import PurchaseInvoiceContainer from "./PurchaseInvoiceContainer";
 const PurchaseInvoice = () => {
   const [listPurchaseInvoice, setListPurchaseInvoice] = useState<
     PurchaseInvoiceItem[]
-  >([]);
+  >([
+    {
+      goods: "",
+      batch: "",
+      ED: { month: null, year: null },
+      price: 0,
+      qty: 0,
+      unit: "pcs",
+      discount: { type: "percentage", value: 0 },
+    },
+  ]);
 
   const [stampPrice, setStampPrice] = useState(0);
   const [purchaseDiscount, setPurchaseDiscount] = useState<Discount>({
@@ -27,8 +37,6 @@ const PurchaseInvoice = () => {
   const [purchaseDate, setPurchaseDate] = useState<Date | null>(new Date());
   const [dueDate, setDueDate] = useState<Date | null>(new Date());
 
-  const handleDeleteItem = (index: number) => {};
-
   return (
     <PurchaseInvoiceContainer
       supplierName={supplierName}
@@ -44,6 +52,13 @@ const PurchaseInvoice = () => {
       handleChangePaymentType={setPaymenetType}
       handleChangePurchaseDate={setPurchaseDate}
       handleChangeDueDate={setDueDate}
+      // list
+      purchaseInvoiceItems={listPurchaseInvoice}
+      stampPrice={stampPrice}
+      purchaseDiscount={purchaseDiscount}
+      setListPurchaseInvoice={setListPurchaseInvoice}
+      setStampPrice={setStampPrice}
+      setPurchaseDiscount={setPurchaseDiscount}
     />
   );
 };
